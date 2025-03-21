@@ -1,13 +1,12 @@
-package com.example.demo;
+package br.edu.ifsul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjetoWeb2Application {
+public class Main {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjetoWeb2Application.class, args);
+		SpringApplication.run(Main.class, args);
 	}
-
 }
