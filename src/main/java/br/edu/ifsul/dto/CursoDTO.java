@@ -2,40 +2,48 @@ package br.edu.ifsul.dto;
 
 import java.time.LocalDate;
 
+import br.edu.ifsul.entity.Categoria;
 import br.edu.ifsul.entity.Curso;
+import br.edu.ifsul.entity.Professor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class CursoDTO {
+    private Long id;
     private String nome;
     private String descricao;
     private LocalDate dataInicio;
     private LocalDate dataFinal;
     private String foto;
 
-    private Long professorId;
-    private Long categoriaId;
+    @JsonIgnoreProperties("cursos")
+    private ProfessorCursoDTO professor;
+    private CategoriaCursoDTO categoria;
 
     public CursoDTO() {
     }
 
-    public CursoDTO(String nome, String descricao, LocalDate dataInicio, LocalDate dataFinal, String foto,
-            Long professorId, Long categoriaId) {
+    public CursoDTO(Long id, String nome, String descricao, LocalDate dataInicio, LocalDate dataFinal, String foto) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
         this.dataFinal = dataFinal;
         this.foto = foto;
-        this.professorId = professorId;
-        this.categoriaId = categoriaId;
     }
 
     public CursoDTO(Curso entity) {
+        this.id = entity.getId();
         this.nome = entity.getNome();
         this.descricao = entity.getDescricao();
         this.dataInicio = entity.getDataInicio();
         this.dataFinal = entity.getDataFinal();
         this.foto = entity.getFoto();
-        this.professorId = entity.getProfessor().getId();
-        this.categoriaId = entity.getCategoria().getId();
+        professor = new ProfessorCursoDTO(entity.getProfessor());
+        categoria = new CategoriaCursoDTO(entity.getCategoria());
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {
@@ -58,11 +66,11 @@ public class CursoDTO {
         return foto;
     }
 
-    public Long getProfessorId() {
-        return professorId;
+    public ProfessorCursoDTO getProfessor() {
+        return professor;
     }
 
-    public Long getCategoriaId() {
-        return categoriaId;
+    public CategoriaCursoDTO getCategoria() {
+        return categoria;
     }
 }

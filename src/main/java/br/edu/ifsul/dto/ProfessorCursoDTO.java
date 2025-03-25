@@ -5,36 +5,31 @@ import java.util.List;
 
 import br.edu.ifsul.entity.Curso;
 import br.edu.ifsul.entity.Professor;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class ProfessorDTO {
+public class ProfessorCursoDTO {
     private Long id;
     private String nome;
     private String email;
     private String foto;
 
-    private List<CursoDTO> cursos = new ArrayList<>();
 
-    public ProfessorDTO() {
+    public ProfessorCursoDTO() {
     }
 
-    public ProfessorDTO(Long id, String nome, String email, String foto) {
+    public ProfessorCursoDTO(Long id, String nome, String email, String foto) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.foto = foto;
     }
 
-    public ProfessorDTO(Professor entity) {
+    public ProfessorCursoDTO(Professor entity) {
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.email = entity.getEmail();
         this.foto = entity.getFoto();
-
-        for(Curso cur : entity.getCursos()) {
-            cursos.add(new CursoDTO(cur));
-        }
     }
+
 
     public Long getId() {
         return id;
@@ -50,9 +45,5 @@ public class ProfessorDTO {
 
     public String getFoto() {
         return foto;
-    }
-
-    public List<CursoDTO> getCursos() {
-        return cursos;
     }
 }

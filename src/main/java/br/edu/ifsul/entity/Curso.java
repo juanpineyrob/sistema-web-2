@@ -2,6 +2,7 @@ package br.edu.ifsul.entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Curso {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -26,7 +27,7 @@ public class Curso {
     private Professor professor;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id")
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     public Curso() {
